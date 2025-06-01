@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "django_bootstrap5",
 
     'job.apps.JobConfig',
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'contact.apps.ContactConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +120,9 @@ USE_I18N = True
 USE_TZ = True
 
 import os
+from django.conf import settings
+from django.conf.urls.static import static
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
@@ -131,6 +136,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# The following code should be placed in your main urls.py, not in settings.py:
+
 
 
 

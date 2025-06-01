@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+            direction: rtl;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .product-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .product-card h3 {
+            margin-top: 0;
+        }
+        .product-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+    <h1>قائمة المنتجات</h1>
+    <div class="products">
+        {% for product in products %}
+            <div class="product-card">
+                {% if product.product_image %}
+                    <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" style="width: 41%; height: 120px; object-fit: cover; border-radius: 8px;">
+                {% else %}
+                    <div style="width: 41%; height: 120px; background-color: #eee; border-radius: 8px;"></div>
+                {% endif %}
+
+                <h3>{{ product.product_name }}</h3>
+                <p><strong>السعر:</strong> {{ product.product_price }} جنيه</p>
+                <a href="{% url 'products:product_detail' product.slug %}">عرض التفاصيل</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

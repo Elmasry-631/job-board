@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.slug }}</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            background-color: #f9f9f9;
+            padding: 30px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        td.label {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>تفاصيل المنتج</h2>
+        <table>
+            <tr>
+                <td class="label">الاسم</td>
+                <td>{{ product.product_name }}</td>
+            </tr>
+            <tr>
+                <td class="label">السعر</td>
+                <td>{{ product.product_price }} جنيه</td>
+            </tr>
+            <tr>
+                <td class="label">الوصف</td>
+                <td>{{ product.product_description }}</td>
+            </tr>
+            <tr>
+                <td class="label">الصورة</td>
+                <td>
+                    {% if product.product_image %}
+                        <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" style="max-width: 100%; height: auto; border-radius: 5px;">
+                    {% else %}
+                        <p>لا توجد صورة متاحة</p>
+                    {% endif %}
+            <tr>
+                <td class="label">تاريخ الإضافة</td>
+                <td>{{ product.created_at|date:"o-m-d   " }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
