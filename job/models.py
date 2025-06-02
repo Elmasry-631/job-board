@@ -3,16 +3,18 @@ from uuid import uuid4
 from datetime import datetime
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 def upload_to(instance, filename):
     ext = filename.split('.')[-1]
     unique_name = f"{uuid4().hex}.{ext}"
-    return "jobs/%s" %(instance.id) +"/"+ datetime.today().strftime("%Y/%m/%d") + "/" + unique_name
+    return "jobs/"  + datetime.today().strftime("%Y/%m/%d") + "/" + unique_name
 
-class Job(models.Model):
+class Job(models.Model): 
     JOB_TYPE = (("Full Time", "Full Time"), ("Part Time", "Part Time"), ("Internship", "Internship"), ("Freelance", "Freelance"))
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='job_owner')
     title = models.CharField(max_length=100)
     job_type = models.CharField(choices=JOB_TYPE)
     description = models.TextField(max_length=500)
