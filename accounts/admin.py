@@ -5,3 +5,4 @@ from .models import Profile, City
 
 
 admin.site.register(Profile)
+admin.site.register(City)

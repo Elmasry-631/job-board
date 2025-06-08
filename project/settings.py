@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "django_bootstrap5",
+    'django_filters',
+    'rest_framework',
 
     'job.apps.JobConfig',
     'blog.apps.BlogConfig',
@@ -137,9 +139,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# The following code should be placed in your main urls.py, not in settings.py:
 
 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ibrahimelmasry631@gmail.com'
+EMAIL_HOST_PASSWORD = 'mnsgxxbtuxoabjuf'
+EMAIL_USE_TLS = True 
+EMAIL_PORT = '587'
 
 
 # Default primary key field type
