@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q%ww)i+$=kny0u$ldnw4e2nk*&-asgqc&!8qu6la0t996b%z8e'
+
+
+# Using decouple to manage sensitive settings
+SECRET_KEY = config('SECRET_KEY')
+
+# SECRET_KEY = 'django-insecure-q%ww)i+$=kny0u$ldnw4e2nk*&-asgqc&!8qu6la0t996b%z8e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,6 +91,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Using SQLite for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -91,7 +99,17 @@ DATABASES = {
     }
 }
 
-
+# For PostgreSQL, you can uncomment the following lines
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "job_board",
+        "USER": "postgres",
+        "PASSWORD": "712002",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
